@@ -120,7 +120,7 @@ namespace Bloxel.Managed.GUI.Controls
             b.Tag = _tabPages.Count;
             b.Width = 50;
             b.Height = 25;
-            b.Position = new Vector2((ClientAreaPosition - Position).X + _tabPages.Count * 50, (ClientAreaPosition - Position).Y);
+            b.Position = new Vector2((ClientAreaPosition - Position).X + _tabPages.Count * 52, (ClientAreaPosition - Position).Y);
             b.Click += new EventHandler(button_Click);
             b.internal_setguimanager(Manager);
             b.internal_setparent(this);
