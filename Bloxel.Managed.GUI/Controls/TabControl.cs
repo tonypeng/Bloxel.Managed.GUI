@@ -125,6 +125,7 @@ namespace Bloxel.Managed.GUI.Controls
             b.internal_setguimanager(Manager);
             b.internal_setparent(this);
             b.internal_onloaded();
+            b.FontSize = FontSize.Smaller;
 
             p.Position = new Vector2((ClientAreaPosition - Position).X, (ClientAreaPosition - Position).Y + 25);
             p.Width = ClientAreaRectangle.Width - 1; // 1 because of the border padding TODO make this less annoying
@@ -153,22 +154,25 @@ namespace Bloxel.Managed.GUI.Controls
             {
                 if (mouseDown)
                 {
-                    if (CurrentPanel.ClientAreaRectangle.Contains(input.Get().MouseXCoordinate(), input.Get().MouseYCoordinate()))
+                    if (CurrentPanel != null)
                     {
-                        if (!CurrentPanel.Focused)
-                            CurrentPanel.internal_onfocused();
-                    }
-                    else
-                    {
-                        if (CurrentPanel.Focused)
-                            CurrentPanel.internal_onunfocused();
+                        if (CurrentPanel.ClientAreaRectangle.Contains(input.Get().MouseXCoordinate(), input.Get().MouseYCoordinate()))
+                        {
+                            if (!CurrentPanel.Focused)
+                                CurrentPanel.internal_onfocused();
+                        }
+                        else
+                        {
+                            if (CurrentPanel.Focused)
+                                CurrentPanel.internal_onunfocused();
+                        }
                     }
                 }
             }
             else
             {
-                if (CurrentPanel.Focused) CurrentPanel.internal_onunfocused();
-                if (_tabPages[CurrentIndex].Button.Focused) _tabPages[CurrentIndex].Button.internal_onunfocused();
+                if (CurrentPanel != null && CurrentPanel.Focused) CurrentPanel.internal_onunfocused();
+                if (_tabPages.Count > 0 && _tabPages[CurrentIndex].Button.Focused) _tabPages[CurrentIndex].Button.internal_onunfocused();
             }
 
             for (int i = 0; i < _tabPages.Count; i++)

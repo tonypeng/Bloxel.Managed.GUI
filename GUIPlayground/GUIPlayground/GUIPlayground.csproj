@@ -92,9 +92,9 @@
       <Name>Bloxel.Managed.GUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\GUIPlaygroundContent\GUIPlaygroundContent.contentproj">
+      <Project>{1CF1952C-2A39-4C09-9D1C-8673F107395C}</Project>
       <Name>GUIPlaygroundContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
-      <Project>{1CF1952C-2A39-4C09-9D1C-8673F107395C}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

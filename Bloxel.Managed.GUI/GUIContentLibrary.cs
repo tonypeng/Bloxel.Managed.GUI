@@ -50,6 +50,7 @@ namespace Bloxel.Managed.GUI
 
         // Fonts
         public SpriteFont UIFont_Small { get; private set; }
+        public SpriteFont UIFont_Smaller { get; private set; }
 
         public ContentManager Content { get { return _content; } }
 
@@ -70,6 +71,8 @@ namespace Bloxel.Managed.GUI
 
             UIFont_Small = Content.Load<SpriteFont>("GUIContent/Fonts/UIFont_Small");
             UIFont_Small.DefaultCharacter = '?';
+            UIFont_Smaller = Content.Load<SpriteFont>("GUIContent/Fonts/UIFont_Smaller");
+            UIFont_Smaller.DefaultCharacter = '?';
         }
 
         public void StoreCustomAsset(string id, object asset)

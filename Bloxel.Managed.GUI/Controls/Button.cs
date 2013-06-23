@@ -42,6 +42,7 @@ namespace Bloxel.Managed.GUI.Controls
         private Vector2 _position;
         private int _width, _height;
 
+        private FontSize _fontSize;
         private string _text;
 
         private readonly int BORDER_WIDTH = 1;
@@ -70,6 +71,7 @@ namespace Bloxel.Managed.GUI.Controls
         public override Rectangle ControlRectangle { get { return new Rectangle((int)AbsolutePosition.X, (int)AbsolutePosition.Y, Width + 2 * BORDER_WIDTH, Height + 2 * BORDER_WIDTH); } }
         public override Rectangle ClientAreaRectangle { get { return new Rectangle((int)AbsoluteClientAreaPosition.X, (int)AbsoluteClientAreaPosition.Y, Width, Height); } }
 
+        public FontSize FontSize { get { return _fontSize; } set { _fontSize = value; } }
         public string Text { get { return _text; } set { _text = value; } }
 
         public Texture2D BackgroundImage
@@ -146,6 +148,8 @@ namespace Bloxel.Managed.GUI.Controls
             _textColor = Color.White;
             _textColorMouseover = Color.Black;
             _textColorClick = Color.Black;
+
+            _fontSize = FontSize.Small;
         }
 
         internal override void internal_onloaded()
@@ -193,11 +197,22 @@ namespace Bloxel.Managed.GUI.Controls
                     }
                 }
             }
+
+            switch (_fontSize)
+            {
+                case Controls.FontSize.Small:
+                    _renderSpriteFont = ContentLibrary.UIFont_Small;
+                    break;
+                case Controls.FontSize.Smaller:
+                    _renderSpriteFont = ContentLibrary.UIFont_Smaller;
+                    break;
+            }
         }
 
         private Texture2D _renderBackgroundTexture;
         private Color _renderBackgroundColor;
         private Color _renderTextColor;
+        private SpriteFont _renderSpriteFont;
 
         internal override void Draw(GameTime gameTime)
         {
@@ -209,13 +224,13 @@ namespace Bloxel.Managed.GUI.Controls
             if (Focused)
                 ShapeRenderer.DrawBorder(_borderColorFocused, ClientAreaRectangle, BORDER_WIDTH);
 
-            Vector2 dim = ContentLibrary.UIFont_Small.MeasureString(_text);
+            Vector2 dim = _renderSpriteFont.MeasureString(_text);
 
             SpriteBatch.Begin();
 
             Point center = ClientAreaRectangle.Center;
 
-            SpriteBatch.DrawString(ContentLibrary.UIFont_Small, _text, new Vector2(center.X - dim.X / 2f, center.Y - dim.Y / 2f), _renderTextColor);
+            SpriteBatch.DrawString(_renderSpriteFont, _text, new Vector2(center.X - dim.X / 2f, center.Y - dim.Y / 2f), _renderTextColor);
 
             SpriteBatch.End();
         }
