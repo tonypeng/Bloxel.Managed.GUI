@@ -35,7 +35,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Bloxel.GUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © Tony Peng 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
